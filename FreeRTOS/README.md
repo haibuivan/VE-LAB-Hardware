@@ -1,0 +1,4 @@
+## Lý do sử dụng GCC 
+
+Khi phát triển hệ thống nhúng với FreeRTOS bằng Makefile, việc sử dụng `GCC` là lựa chọn phù hợp và linh hoạt hơn so với `RVDS`. `GCC` là một trình biên dịch mã nguồn mở, được hỗ trợ rộng rãi và tương thích trực tiếp với các port chính thức của FreeRTOS trong thư mục `portable/GCC`. Điều này giúp quá trình tích hợp trở nên đơn giản, ổn định và ít phát sinh lỗi. Ngược lại, `RVDS` (thuộc môi trường Keil) sử dụng compiler riêng và các đoạn mã assembly đặc thù, khiến việc dùng lại trong môi trường `GCC` gặp nhiều khó khăn, thậm chí không thể biên dịch hoặc gây lỗi khi chạy. Vì vậy, khi xây dựng hệ thống bằng `GCC` và Makefile, nên sử dụng các file port tương ứng trong `portable/GCC` thay vì `RVDS` để đảm bảo tính tương thích, dễ bảo trì và phù hợp với quy trình phát triển hiện đại.
+

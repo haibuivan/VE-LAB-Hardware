@@ -1,0 +1,172 @@
+ARM GAS  C:\Users\ADMIN\AppData\Local\Temp\ccXbLcJf.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.arch armv7-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"main.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.TIM1_CC_IRQHandler,"ax",%progbits
+  18              		.align	1
+  19              		.global	TIM1_CC_IRQHandler
+  20              		.syntax unified
+  21              		.thumb
+  22              		.thumb_func
+  24              	TIM1_CC_IRQHandler:
+  25              	.LFB73:
+  26              		.file 1 "Src/main.c"
+   1:Src/main.c    **** #include "stm32f10x.h"                  // Device header
+   2:Src/main.c    **** #include "FreeRTOS.h"
+   3:Src/main.c    **** #include "FreeRTOSConfig.h"
+   4:Src/main.c    **** #include "task.h"
+   5:Src/main.c    **** #include "semphr.h"
+   6:Src/main.c    **** #include "timers.h"
+   7:Src/main.c    **** #include "queue.h"
+   8:Src/main.c    **** #include "stdio.h"
+   9:Src/main.c    **** #include "dht11_app.h"
+  10:Src/main.c    **** 
+  11:Src/main.c    **** 
+  12:Src/main.c    **** /* ================================================================
+  13:Src/main.c    ****  *  IRQ HANDLERS — đặt trong stm32f10x_it.c
+  14:Src/main.c    ****  * ================================================================ */
+  15:Src/main.c    **** void dht11_tim1_cc_irq(void);
+  16:Src/main.c    **** void dht11_tim2_ic_irq(void);
+  17:Src/main.c    **** 
+  18:Src/main.c    **** void TIM1_CC_IRQHandler(void) { dht11_tim1_cc_irq(); }
+  27              		.loc 1 18 31 view -0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31 0000 08B5     		push	{r3, lr}
+  32              	.LCFI0:
+  33              		.cfi_def_cfa_offset 8
+  34              		.cfi_offset 3, -8
+  35              		.cfi_offset 14, -4
+  36              		.loc 1 18 33 view .LVU1
+  37 0002 FFF7FEFF 		bl	dht11_tim1_cc_irq
+  38              	.LVL0:
+  39              		.loc 1 18 54 is_stmt 0 view .LVU2
+  40 0006 08BD     		pop	{r3, pc}
+ARM GAS  C:\Users\ADMIN\AppData\Local\Temp\ccXbLcJf.s 			page 2
+
+
+  41              		.cfi_endproc
+  42              	.LFE73:
+  44              		.section	.text.TIM2_IRQHandler,"ax",%progbits
+  45              		.align	1
+  46              		.global	TIM2_IRQHandler
+  47              		.syntax unified
+  48              		.thumb
+  49              		.thumb_func
+  51              	TIM2_IRQHandler:
+  52              	.LFB74:
+  19:Src/main.c    **** void TIM2_IRQHandler(void)    { dht11_tim2_ic_irq(); }
+  53              		.loc 1 19 31 is_stmt 1 view -0
+  54              		.cfi_startproc
+  55              		@ args = 0, pretend = 0, frame = 0
+  56              		@ frame_needed = 0, uses_anonymous_args = 0
+  57 0000 08B5     		push	{r3, lr}
+  58              	.LCFI1:
+  59              		.cfi_def_cfa_offset 8
+  60              		.cfi_offset 3, -8
+  61              		.cfi_offset 14, -4
+  62              		.loc 1 19 33 view .LVU4
+  63 0002 FFF7FEFF 		bl	dht11_tim2_ic_irq
+  64              	.LVL1:
+  65              		.loc 1 19 54 is_stmt 0 view .LVU5
+  66 0006 08BD     		pop	{r3, pc}
+  67              		.cfi_endproc
+  68              	.LFE74:
+  70              		.section	.text.main,"ax",%progbits
+  71              		.align	1
+  72              		.global	main
+  73              		.syntax unified
+  74              		.thumb
+  75              		.thumb_func
+  77              	main:
+  78              	.LFB75:
+  20:Src/main.c    **** 
+  21:Src/main.c    **** /* ================================================================
+  22:Src/main.c    ****  *  MAIN — app chỉ cần 2 dòng để chạy lab DHT11
+  23:Src/main.c    ****  * ================================================================ */
+  24:Src/main.c    **** int main(void)
+  25:Src/main.c    **** {
+  79              		.loc 1 25 1 is_stmt 1 view -0
+  80              		.cfi_startproc
+  81              		@ Volatile: function does not return.
+  82              		@ args = 0, pretend = 0, frame = 0
+  83              		@ frame_needed = 0, uses_anonymous_args = 0
+  84 0000 08B5     		push	{r3, lr}
+  85              	.LCFI2:
+  86              		.cfi_def_cfa_offset 8
+  87              		.cfi_offset 3, -8
+  88              		.cfi_offset 14, -4
+  26:Src/main.c    ****     SystemInit();
+  89              		.loc 1 26 5 view .LVU7
+  90 0002 FFF7FEFF 		bl	SystemInit
+  91              	.LVL2:
+  27:Src/main.c    ****     SystemCoreClockUpdate();
+  92              		.loc 1 27 5 view .LVU8
+ARM GAS  C:\Users\ADMIN\AppData\Local\Temp\ccXbLcJf.s 			page 3
+
+
+  93 0006 FFF7FEFF 		bl	SystemCoreClockUpdate
+  94              	.LVL3:
+  28:Src/main.c    **** 
+  29:Src/main.c    ****     dht11_app_config();
+  95              		.loc 1 29 5 view .LVU9
+  96 000a FFF7FEFF 		bl	dht11_app_config
+  97              	.LVL4:
+  30:Src/main.c    ****     dht11_app_run();
+  98              		.loc 1 30 5 view .LVU10
+  99 000e FFF7FEFF 		bl	dht11_app_run
+ 100              	.LVL5:
+  31:Src/main.c    **** 
+  32:Src/main.c    ****     vTaskStartScheduler();
+ 101              		.loc 1 32 5 view .LVU11
+ 102 0012 FFF7FEFF 		bl	vTaskStartScheduler
+ 103              	.LVL6:
+ 104              	.L6:
+  33:Src/main.c    ****     for (;;) {}
+ 105              		.loc 1 33 5 discriminator 1 view .LVU12
+ 106              		.loc 1 33 15 discriminator 1 view .LVU13
+ 107              		.loc 1 33 11 discriminator 1 view .LVU14
+ 108 0016 FEE7     		b	.L6
+ 109              		.cfi_endproc
+ 110              	.LFE75:
+ 112              		.text
+ 113              	.Letext0:
+ 114              		.file 2 "Libraries/CMSIS/Device/ST/STM32F1xx/Include/system_stm32f10x.h"
+ 115              		.file 3 "App/dht11_app.h"
+ 116              		.file 4 "FreeRTOS/include/task.h"
+ARM GAS  C:\Users\ADMIN\AppData\Local\Temp\ccXbLcJf.s 			page 4
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 main.c
+C:\Users\ADMIN\AppData\Local\Temp\ccXbLcJf.s:18     .text.TIM1_CC_IRQHandler:00000000 $t
+C:\Users\ADMIN\AppData\Local\Temp\ccXbLcJf.s:24     .text.TIM1_CC_IRQHandler:00000000 TIM1_CC_IRQHandler
+C:\Users\ADMIN\AppData\Local\Temp\ccXbLcJf.s:45     .text.TIM2_IRQHandler:00000000 $t
+C:\Users\ADMIN\AppData\Local\Temp\ccXbLcJf.s:51     .text.TIM2_IRQHandler:00000000 TIM2_IRQHandler
+C:\Users\ADMIN\AppData\Local\Temp\ccXbLcJf.s:71     .text.main:00000000 $t
+C:\Users\ADMIN\AppData\Local\Temp\ccXbLcJf.s:77     .text.main:00000000 main
+
+UNDEFINED SYMBOLS
+dht11_tim1_cc_irq
+dht11_tim2_ic_irq
+SystemInit
+SystemCoreClockUpdate
+dht11_app_config
+dht11_app_run
+vTaskStartScheduler
