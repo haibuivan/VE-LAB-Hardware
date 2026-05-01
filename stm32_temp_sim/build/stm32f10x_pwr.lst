@@ -1,0 +1,735 @@
+ARM GAS  C:\Users\ADMIN\AppData\Local\Temp\ccvgfLcG.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.arch armv7-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"stm32f10x_pwr.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.PWR_DeInit,"ax",%progbits
+  18              		.align	1
+  19              		.global	PWR_DeInit
+  20              		.syntax unified
+  21              		.thumb
+  22              		.thumb_func
+  24              	PWR_DeInit:
+  25              	.LFB65:
+  26              		.file 1 "Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c"
+   1:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** /**
+   2:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   ******************************************************************************
+   3:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   * @file    stm32f10x_pwr.c
+   4:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   * @author  MCD Application Team
+   5:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   * @version V3.5.0
+   6:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   * @date    11-March-2011
+   7:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   * @brief   This file provides all the PWR firmware functions.
+   8:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   ******************************************************************************
+   9:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   * @attention
+  10:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   *
+  11:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   * THE PRESENT FIRMWARE WHICH IS FOR GUIDANCE ONLY AIMS AT PROVIDING CUSTOMERS
+  12:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   * WITH CODING INFORMATION REGARDING THEIR PRODUCTS IN ORDER FOR THEM TO SAVE
+  13:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   * TIME. AS A RESULT, STMICROELECTRONICS SHALL NOT BE HELD LIABLE FOR ANY
+  14:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   * DIRECT, INDIRECT OR CONSEQUENTIAL DAMAGES WITH RESPECT TO ANY CLAIMS ARISING
+  15:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   * FROM THE CONTENT OF SUCH FIRMWARE AND/OR THE USE MADE BY CUSTOMERS OF THE
+  16:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   * CODING INFORMATION CONTAINED HEREIN IN CONNECTION WITH THEIR PRODUCTS.
+  17:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   *
+  18:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   * <h2><center>&copy; COPYRIGHT 2011 STMicroelectronics</center></h2>
+  19:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   ******************************************************************************
+  20:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   */
+  21:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** 
+  22:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** /* Includes ------------------------------------------------------------------*/
+  23:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** #include "stm32f10x_pwr.h"
+  24:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** #include "stm32f10x_rcc.h"
+  25:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** 
+  26:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** /** @addtogroup STM32F10x_StdPeriph_Driver
+  27:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   * @{
+  28:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   */
+  29:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** 
+  30:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** /** @defgroup PWR 
+  31:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   * @brief PWR driver modules
+  32:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   * @{
+ARM GAS  C:\Users\ADMIN\AppData\Local\Temp\ccvgfLcG.s 			page 2
+
+
+  33:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   */ 
+  34:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** 
+  35:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** /** @defgroup PWR_Private_TypesDefinitions
+  36:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   * @{
+  37:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   */
+  38:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** 
+  39:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** /**
+  40:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   * @}
+  41:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   */
+  42:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** 
+  43:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** /** @defgroup PWR_Private_Defines
+  44:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   * @{
+  45:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   */
+  46:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** 
+  47:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** /* --------- PWR registers bit address in the alias region ---------- */
+  48:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** #define PWR_OFFSET               (PWR_BASE - PERIPH_BASE)
+  49:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** 
+  50:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** /* --- CR Register ---*/
+  51:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** 
+  52:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** /* Alias word address of DBP bit */
+  53:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** #define CR_OFFSET                (PWR_OFFSET + 0x00)
+  54:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** #define DBP_BitNumber            0x08
+  55:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** #define CR_DBP_BB                (PERIPH_BB_BASE + (CR_OFFSET * 32) + (DBP_BitNumber * 4))
+  56:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** 
+  57:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** /* Alias word address of PVDE bit */
+  58:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** #define PVDE_BitNumber           0x04
+  59:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** #define CR_PVDE_BB               (PERIPH_BB_BASE + (CR_OFFSET * 32) + (PVDE_BitNumber * 4))
+  60:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** 
+  61:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** /* --- CSR Register ---*/
+  62:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** 
+  63:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** /* Alias word address of EWUP bit */
+  64:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** #define CSR_OFFSET               (PWR_OFFSET + 0x04)
+  65:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** #define EWUP_BitNumber           0x08
+  66:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** #define CSR_EWUP_BB              (PERIPH_BB_BASE + (CSR_OFFSET * 32) + (EWUP_BitNumber * 4))
+  67:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** 
+  68:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** /* ------------------ PWR registers bit mask ------------------------ */
+  69:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** 
+  70:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** /* CR register bit mask */
+  71:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** #define CR_DS_MASK               ((uint32_t)0xFFFFFFFC)
+  72:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** #define CR_PLS_MASK              ((uint32_t)0xFFFFFF1F)
+  73:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** 
+  74:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** 
+  75:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** /**
+  76:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   * @}
+  77:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   */
+  78:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** 
+  79:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** /** @defgroup PWR_Private_Macros
+  80:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   * @{
+  81:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   */
+  82:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** 
+  83:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** /**
+  84:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   * @}
+  85:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   */
+  86:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** 
+  87:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** /** @defgroup PWR_Private_Variables
+  88:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   * @{
+  89:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   */
+ARM GAS  C:\Users\ADMIN\AppData\Local\Temp\ccvgfLcG.s 			page 3
+
+
+  90:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** 
+  91:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** /**
+  92:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   * @}
+  93:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   */
+  94:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** 
+  95:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** /** @defgroup PWR_Private_FunctionPrototypes
+  96:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   * @{
+  97:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   */
+  98:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** 
+  99:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** /**
+ 100:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   * @}
+ 101:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   */
+ 102:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** 
+ 103:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** /** @defgroup PWR_Private_Functions
+ 104:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   * @{
+ 105:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   */
+ 106:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** 
+ 107:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** /**
+ 108:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   * @brief  Deinitializes the PWR peripheral registers to their default reset values.
+ 109:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   * @param  None
+ 110:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   * @retval None
+ 111:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   */
+ 112:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** void PWR_DeInit(void)
+ 113:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** {
+  27              		.loc 1 113 1 view -0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31 0000 08B5     		push	{r3, lr}
+  32              	.LCFI0:
+  33              		.cfi_def_cfa_offset 8
+  34              		.cfi_offset 3, -8
+  35              		.cfi_offset 14, -4
+ 114:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   RCC_APB1PeriphResetCmd(RCC_APB1Periph_PWR, ENABLE);
+  36              		.loc 1 114 3 view .LVU1
+  37 0002 0121     		movs	r1, #1
+  38 0004 4FF08050 		mov	r0, #268435456
+  39 0008 FFF7FEFF 		bl	RCC_APB1PeriphResetCmd
+  40              	.LVL0:
+ 115:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   RCC_APB1PeriphResetCmd(RCC_APB1Periph_PWR, DISABLE);
+  41              		.loc 1 115 3 view .LVU2
+  42 000c 0021     		movs	r1, #0
+  43 000e 4FF08050 		mov	r0, #268435456
+  44 0012 FFF7FEFF 		bl	RCC_APB1PeriphResetCmd
+  45              	.LVL1:
+ 116:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** }
+  46              		.loc 1 116 1 is_stmt 0 view .LVU3
+  47 0016 08BD     		pop	{r3, pc}
+  48              		.cfi_endproc
+  49              	.LFE65:
+  51              		.section	.text.PWR_BackupAccessCmd,"ax",%progbits
+  52              		.align	1
+  53              		.global	PWR_BackupAccessCmd
+  54              		.syntax unified
+  55              		.thumb
+  56              		.thumb_func
+  58              	PWR_BackupAccessCmd:
+ARM GAS  C:\Users\ADMIN\AppData\Local\Temp\ccvgfLcG.s 			page 4
+
+
+  59              	.LVL2:
+  60              	.LFB66:
+ 117:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** 
+ 118:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** /**
+ 119:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   * @brief  Enables or disables access to the RTC and backup registers.
+ 120:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   * @param  NewState: new state of the access to the RTC and backup registers.
+ 121:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   *   This parameter can be: ENABLE or DISABLE.
+ 122:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   * @retval None
+ 123:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   */
+ 124:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** void PWR_BackupAccessCmd(FunctionalState NewState)
+ 125:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** {
+  61              		.loc 1 125 1 is_stmt 1 view -0
+  62              		.cfi_startproc
+  63              		@ args = 0, pretend = 0, frame = 0
+  64              		@ frame_needed = 0, uses_anonymous_args = 0
+  65              		@ link register save eliminated.
+ 126:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   /* Check the parameters */
+ 127:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   assert_param(IS_FUNCTIONAL_STATE(NewState));
+  66              		.loc 1 127 3 view .LVU5
+ 128:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   *(__IO uint32_t *) CR_DBP_BB = (uint32_t)NewState;
+  67              		.loc 1 128 3 view .LVU6
+  68              		.loc 1 128 32 is_stmt 0 view .LVU7
+  69 0000 014B     		ldr	r3, .L4
+  70 0002 1862     		str	r0, [r3, #32]
+ 129:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** }
+  71              		.loc 1 129 1 view .LVU8
+  72 0004 7047     		bx	lr
+  73              	.L5:
+  74 0006 00BF     		.align	2
+  75              	.L4:
+  76 0008 00000E42 		.word	1108213760
+  77              		.cfi_endproc
+  78              	.LFE66:
+  80              		.section	.text.PWR_PVDCmd,"ax",%progbits
+  81              		.align	1
+  82              		.global	PWR_PVDCmd
+  83              		.syntax unified
+  84              		.thumb
+  85              		.thumb_func
+  87              	PWR_PVDCmd:
+  88              	.LVL3:
+  89              	.LFB67:
+ 130:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** 
+ 131:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** /**
+ 132:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   * @brief  Enables or disables the Power Voltage Detector(PVD).
+ 133:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   * @param  NewState: new state of the PVD.
+ 134:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   *   This parameter can be: ENABLE or DISABLE.
+ 135:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   * @retval None
+ 136:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   */
+ 137:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** void PWR_PVDCmd(FunctionalState NewState)
+ 138:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** {
+  90              		.loc 1 138 1 is_stmt 1 view -0
+  91              		.cfi_startproc
+  92              		@ args = 0, pretend = 0, frame = 0
+  93              		@ frame_needed = 0, uses_anonymous_args = 0
+  94              		@ link register save eliminated.
+ 139:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   /* Check the parameters */
+ARM GAS  C:\Users\ADMIN\AppData\Local\Temp\ccvgfLcG.s 			page 5
+
+
+ 140:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   assert_param(IS_FUNCTIONAL_STATE(NewState));
+  95              		.loc 1 140 3 view .LVU10
+ 141:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   *(__IO uint32_t *) CR_PVDE_BB = (uint32_t)NewState;
+  96              		.loc 1 141 3 view .LVU11
+  97              		.loc 1 141 33 is_stmt 0 view .LVU12
+  98 0000 014B     		ldr	r3, .L7
+  99 0002 1861     		str	r0, [r3, #16]
+ 142:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** }
+ 100              		.loc 1 142 1 view .LVU13
+ 101 0004 7047     		bx	lr
+ 102              	.L8:
+ 103 0006 00BF     		.align	2
+ 104              	.L7:
+ 105 0008 00000E42 		.word	1108213760
+ 106              		.cfi_endproc
+ 107              	.LFE67:
+ 109              		.section	.text.PWR_PVDLevelConfig,"ax",%progbits
+ 110              		.align	1
+ 111              		.global	PWR_PVDLevelConfig
+ 112              		.syntax unified
+ 113              		.thumb
+ 114              		.thumb_func
+ 116              	PWR_PVDLevelConfig:
+ 117              	.LVL4:
+ 118              	.LFB68:
+ 143:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** 
+ 144:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** /**
+ 145:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   * @brief  Configures the voltage threshold detected by the Power Voltage Detector(PVD).
+ 146:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   * @param  PWR_PVDLevel: specifies the PVD detection level
+ 147:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   *   This parameter can be one of the following values:
+ 148:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   *     @arg PWR_PVDLevel_2V2: PVD detection level set to 2.2V
+ 149:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   *     @arg PWR_PVDLevel_2V3: PVD detection level set to 2.3V
+ 150:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   *     @arg PWR_PVDLevel_2V4: PVD detection level set to 2.4V
+ 151:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   *     @arg PWR_PVDLevel_2V5: PVD detection level set to 2.5V
+ 152:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   *     @arg PWR_PVDLevel_2V6: PVD detection level set to 2.6V
+ 153:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   *     @arg PWR_PVDLevel_2V7: PVD detection level set to 2.7V
+ 154:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   *     @arg PWR_PVDLevel_2V8: PVD detection level set to 2.8V
+ 155:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   *     @arg PWR_PVDLevel_2V9: PVD detection level set to 2.9V
+ 156:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   * @retval None
+ 157:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   */
+ 158:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** void PWR_PVDLevelConfig(uint32_t PWR_PVDLevel)
+ 159:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** {
+ 119              		.loc 1 159 1 is_stmt 1 view -0
+ 120              		.cfi_startproc
+ 121              		@ args = 0, pretend = 0, frame = 0
+ 122              		@ frame_needed = 0, uses_anonymous_args = 0
+ 123              		@ link register save eliminated.
+ 160:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   uint32_t tmpreg = 0;
+ 124              		.loc 1 160 3 view .LVU15
+ 161:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   /* Check the parameters */
+ 162:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   assert_param(IS_PWR_PVD_LEVEL(PWR_PVDLevel));
+ 125              		.loc 1 162 3 view .LVU16
+ 163:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   tmpreg = PWR->CR;
+ 126              		.loc 1 163 3 view .LVU17
+ 127              		.loc 1 163 10 is_stmt 0 view .LVU18
+ 128 0000 034A     		ldr	r2, .L10
+ 129 0002 1368     		ldr	r3, [r2]
+ARM GAS  C:\Users\ADMIN\AppData\Local\Temp\ccvgfLcG.s 			page 6
+
+
+ 130              	.LVL5:
+ 164:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   /* Clear PLS[7:5] bits */
+ 165:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   tmpreg &= CR_PLS_MASK;
+ 131              		.loc 1 165 3 is_stmt 1 view .LVU19
+ 132              		.loc 1 165 10 is_stmt 0 view .LVU20
+ 133 0004 23F0E003 		bic	r3, r3, #224
+ 134              	.LVL6:
+ 166:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   /* Set PLS[7:5] bits according to PWR_PVDLevel value */
+ 167:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   tmpreg |= PWR_PVDLevel;
+ 135              		.loc 1 167 3 is_stmt 1 view .LVU21
+ 136              		.loc 1 167 10 is_stmt 0 view .LVU22
+ 137 0008 0343     		orrs	r3, r3, r0
+ 138              	.LVL7:
+ 168:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   /* Store the new value */
+ 169:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   PWR->CR = tmpreg;
+ 139              		.loc 1 169 3 is_stmt 1 view .LVU23
+ 140              		.loc 1 169 11 is_stmt 0 view .LVU24
+ 141 000a 1360     		str	r3, [r2]
+ 170:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** }
+ 142              		.loc 1 170 1 view .LVU25
+ 143 000c 7047     		bx	lr
+ 144              	.L11:
+ 145 000e 00BF     		.align	2
+ 146              	.L10:
+ 147 0010 00700040 		.word	1073770496
+ 148              		.cfi_endproc
+ 149              	.LFE68:
+ 151              		.section	.text.PWR_WakeUpPinCmd,"ax",%progbits
+ 152              		.align	1
+ 153              		.global	PWR_WakeUpPinCmd
+ 154              		.syntax unified
+ 155              		.thumb
+ 156              		.thumb_func
+ 158              	PWR_WakeUpPinCmd:
+ 159              	.LVL8:
+ 160              	.LFB69:
+ 171:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** 
+ 172:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** /**
+ 173:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   * @brief  Enables or disables the WakeUp Pin functionality.
+ 174:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   * @param  NewState: new state of the WakeUp Pin functionality.
+ 175:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   *   This parameter can be: ENABLE or DISABLE.
+ 176:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   * @retval None
+ 177:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   */
+ 178:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** void PWR_WakeUpPinCmd(FunctionalState NewState)
+ 179:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** {
+ 161              		.loc 1 179 1 is_stmt 1 view -0
+ 162              		.cfi_startproc
+ 163              		@ args = 0, pretend = 0, frame = 0
+ 164              		@ frame_needed = 0, uses_anonymous_args = 0
+ 165              		@ link register save eliminated.
+ 180:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   /* Check the parameters */
+ 181:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   assert_param(IS_FUNCTIONAL_STATE(NewState));
+ 166              		.loc 1 181 3 view .LVU27
+ 182:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   *(__IO uint32_t *) CSR_EWUP_BB = (uint32_t)NewState;
+ 167              		.loc 1 182 3 view .LVU28
+ 168              		.loc 1 182 34 is_stmt 0 view .LVU29
+ 169 0000 014B     		ldr	r3, .L13
+ARM GAS  C:\Users\ADMIN\AppData\Local\Temp\ccvgfLcG.s 			page 7
+
+
+ 170 0002 C3F8A000 		str	r0, [r3, #160]
+ 183:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** }
+ 171              		.loc 1 183 1 view .LVU30
+ 172 0006 7047     		bx	lr
+ 173              	.L14:
+ 174              		.align	2
+ 175              	.L13:
+ 176 0008 00000E42 		.word	1108213760
+ 177              		.cfi_endproc
+ 178              	.LFE69:
+ 180              		.section	.text.PWR_EnterSTOPMode,"ax",%progbits
+ 181              		.align	1
+ 182              		.global	PWR_EnterSTOPMode
+ 183              		.syntax unified
+ 184              		.thumb
+ 185              		.thumb_func
+ 187              	PWR_EnterSTOPMode:
+ 188              	.LVL9:
+ 189              	.LFB70:
+ 184:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** 
+ 185:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** /**
+ 186:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   * @brief  Enters STOP mode.
+ 187:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   * @param  PWR_Regulator: specifies the regulator state in STOP mode.
+ 188:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   *   This parameter can be one of the following values:
+ 189:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   *     @arg PWR_Regulator_ON: STOP mode with regulator ON
+ 190:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   *     @arg PWR_Regulator_LowPower: STOP mode with regulator in low power mode
+ 191:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   * @param  PWR_STOPEntry: specifies if STOP mode in entered with WFI or WFE instruction.
+ 192:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   *   This parameter can be one of the following values:
+ 193:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   *     @arg PWR_STOPEntry_WFI: enter STOP mode with WFI instruction
+ 194:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   *     @arg PWR_STOPEntry_WFE: enter STOP mode with WFE instruction
+ 195:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   * @retval None
+ 196:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   */
+ 197:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** void PWR_EnterSTOPMode(uint32_t PWR_Regulator, uint8_t PWR_STOPEntry)
+ 198:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** {
+ 190              		.loc 1 198 1 is_stmt 1 view -0
+ 191              		.cfi_startproc
+ 192              		@ args = 0, pretend = 0, frame = 0
+ 193              		@ frame_needed = 0, uses_anonymous_args = 0
+ 194              		@ link register save eliminated.
+ 199:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   uint32_t tmpreg = 0;
+ 195              		.loc 1 199 3 view .LVU32
+ 200:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   /* Check the parameters */
+ 201:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   assert_param(IS_PWR_REGULATOR(PWR_Regulator));
+ 196              		.loc 1 201 3 view .LVU33
+ 202:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   assert_param(IS_PWR_STOP_ENTRY(PWR_STOPEntry));
+ 197              		.loc 1 202 3 view .LVU34
+ 203:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   
+ 204:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   /* Select the regulator state in STOP mode ---------------------------------*/
+ 205:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   tmpreg = PWR->CR;
+ 198              		.loc 1 205 3 view .LVU35
+ 199              		.loc 1 205 10 is_stmt 0 view .LVU36
+ 200 0000 0A4A     		ldr	r2, .L19
+ 201 0002 1368     		ldr	r3, [r2]
+ 202              	.LVL10:
+ 206:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   /* Clear PDDS and LPDS bits */
+ 207:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   tmpreg &= CR_DS_MASK;
+ 203              		.loc 1 207 3 is_stmt 1 view .LVU37
+ARM GAS  C:\Users\ADMIN\AppData\Local\Temp\ccvgfLcG.s 			page 8
+
+
+ 204              		.loc 1 207 10 is_stmt 0 view .LVU38
+ 205 0004 23F00303 		bic	r3, r3, #3
+ 206              	.LVL11:
+ 208:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   /* Set LPDS bit according to PWR_Regulator value */
+ 209:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   tmpreg |= PWR_Regulator;
+ 207              		.loc 1 209 3 is_stmt 1 view .LVU39
+ 208              		.loc 1 209 10 is_stmt 0 view .LVU40
+ 209 0008 0343     		orrs	r3, r3, r0
+ 210              	.LVL12:
+ 210:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   /* Store the new value */
+ 211:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   PWR->CR = tmpreg;
+ 211              		.loc 1 211 3 is_stmt 1 view .LVU41
+ 212              		.loc 1 211 11 is_stmt 0 view .LVU42
+ 213 000a 1360     		str	r3, [r2]
+ 212:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   /* Set SLEEPDEEP bit of Cortex System Control Register */
+ 213:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   SCB->SCR |= SCB_SCR_SLEEPDEEP;
+ 214              		.loc 1 213 3 is_stmt 1 view .LVU43
+ 215              		.loc 1 213 12 is_stmt 0 view .LVU44
+ 216 000c 084A     		ldr	r2, .L19+4
+ 217 000e 1369     		ldr	r3, [r2, #16]
+ 218              	.LVL13:
+ 219              		.loc 1 213 12 view .LVU45
+ 220 0010 43F00403 		orr	r3, r3, #4
+ 221 0014 1361     		str	r3, [r2, #16]
+ 222              	.LVL14:
+ 214:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   
+ 215:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   /* Select STOP mode entry --------------------------------------------------*/
+ 216:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   if(PWR_STOPEntry == PWR_STOPEntry_WFI)
+ 223              		.loc 1 216 3 is_stmt 1 view .LVU46
+ 224              		.loc 1 216 5 is_stmt 0 view .LVU47
+ 225 0016 0129     		cmp	r1, #1
+ 226 0018 06D0     		beq	.L18
+ 217:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   {   
+ 218:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****     /* Request Wait For Interrupt */
+ 219:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****     __WFI();
+ 220:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   }
+ 221:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   else
+ 222:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   {
+ 223:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****     /* Request Wait For Event */
+ 224:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****     __WFE();
+ 227              		.loc 1 224 5 is_stmt 1 view .LVU48
+ 228              		.syntax unified
+ 229              	@ 224 "Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c" 1
+ 230 001a 20BF     		wfe
+ 231              	@ 0 "" 2
+ 232              		.thumb
+ 233              		.syntax unified
+ 234              	.L17:
+ 225:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   }
+ 226:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   
+ 227:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   /* Reset SLEEPDEEP bit of Cortex System Control Register */
+ 228:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   SCB->SCR &= (uint32_t)~((uint32_t)SCB_SCR_SLEEPDEEP);  
+ 235              		.loc 1 228 3 view .LVU49
+ 236              		.loc 1 228 12 is_stmt 0 view .LVU50
+ 237 001c 044A     		ldr	r2, .L19+4
+ 238 001e 1369     		ldr	r3, [r2, #16]
+ 239 0020 23F00403 		bic	r3, r3, #4
+ARM GAS  C:\Users\ADMIN\AppData\Local\Temp\ccvgfLcG.s 			page 9
+
+
+ 240 0024 1361     		str	r3, [r2, #16]
+ 229:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** }
+ 241              		.loc 1 229 1 view .LVU51
+ 242 0026 7047     		bx	lr
+ 243              	.L18:
+ 219:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   }
+ 244              		.loc 1 219 5 is_stmt 1 view .LVU52
+ 245              		.syntax unified
+ 246              	@ 219 "Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c" 1
+ 247 0028 30BF     		wfi
+ 248              	@ 0 "" 2
+ 249              		.thumb
+ 250              		.syntax unified
+ 251 002a F7E7     		b	.L17
+ 252              	.L20:
+ 253              		.align	2
+ 254              	.L19:
+ 255 002c 00700040 		.word	1073770496
+ 256 0030 00ED00E0 		.word	-536810240
+ 257              		.cfi_endproc
+ 258              	.LFE70:
+ 260              		.section	.text.PWR_EnterSTANDBYMode,"ax",%progbits
+ 261              		.align	1
+ 262              		.global	PWR_EnterSTANDBYMode
+ 263              		.syntax unified
+ 264              		.thumb
+ 265              		.thumb_func
+ 267              	PWR_EnterSTANDBYMode:
+ 268              	.LFB71:
+ 230:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** 
+ 231:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** /**
+ 232:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   * @brief  Enters STANDBY mode.
+ 233:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   * @param  None
+ 234:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   * @retval None
+ 235:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   */
+ 236:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** void PWR_EnterSTANDBYMode(void)
+ 237:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** {
+ 269              		.loc 1 237 1 view -0
+ 270              		.cfi_startproc
+ 271              		@ args = 0, pretend = 0, frame = 0
+ 272              		@ frame_needed = 0, uses_anonymous_args = 0
+ 273              		@ link register save eliminated.
+ 238:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   /* Clear Wake-up flag */
+ 239:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   PWR->CR |= PWR_CR_CWUF;
+ 274              		.loc 1 239 3 view .LVU54
+ 275              		.loc 1 239 11 is_stmt 0 view .LVU55
+ 276 0000 074B     		ldr	r3, .L22
+ 277 0002 1A68     		ldr	r2, [r3]
+ 278 0004 42F00402 		orr	r2, r2, #4
+ 279 0008 1A60     		str	r2, [r3]
+ 240:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   /* Select STANDBY mode */
+ 241:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   PWR->CR |= PWR_CR_PDDS;
+ 280              		.loc 1 241 3 is_stmt 1 view .LVU56
+ 281              		.loc 1 241 11 is_stmt 0 view .LVU57
+ 282 000a 1A68     		ldr	r2, [r3]
+ 283 000c 42F00202 		orr	r2, r2, #2
+ 284 0010 1A60     		str	r2, [r3]
+ARM GAS  C:\Users\ADMIN\AppData\Local\Temp\ccvgfLcG.s 			page 10
+
+
+ 242:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   /* Set SLEEPDEEP bit of Cortex System Control Register */
+ 243:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   SCB->SCR |= SCB_SCR_SLEEPDEEP;
+ 285              		.loc 1 243 3 is_stmt 1 view .LVU58
+ 286              		.loc 1 243 12 is_stmt 0 view .LVU59
+ 287 0012 044A     		ldr	r2, .L22+4
+ 288 0014 1369     		ldr	r3, [r2, #16]
+ 289 0016 43F00403 		orr	r3, r3, #4
+ 290 001a 1361     		str	r3, [r2, #16]
+ 244:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** /* This option is used to ensure that store operations are completed */
+ 245:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** #if defined ( __CC_ARM   )
+ 246:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   __force_stores();
+ 247:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** #endif
+ 248:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   /* Request Wait For Interrupt */
+ 249:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   __WFI();
+ 291              		.loc 1 249 3 is_stmt 1 view .LVU60
+ 292              		.syntax unified
+ 293              	@ 249 "Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c" 1
+ 294 001c 30BF     		wfi
+ 295              	@ 0 "" 2
+ 250:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** }
+ 296              		.loc 1 250 1 is_stmt 0 view .LVU61
+ 297              		.thumb
+ 298              		.syntax unified
+ 299 001e 7047     		bx	lr
+ 300              	.L23:
+ 301              		.align	2
+ 302              	.L22:
+ 303 0020 00700040 		.word	1073770496
+ 304 0024 00ED00E0 		.word	-536810240
+ 305              		.cfi_endproc
+ 306              	.LFE71:
+ 308              		.section	.text.PWR_GetFlagStatus,"ax",%progbits
+ 309              		.align	1
+ 310              		.global	PWR_GetFlagStatus
+ 311              		.syntax unified
+ 312              		.thumb
+ 313              		.thumb_func
+ 315              	PWR_GetFlagStatus:
+ 316              	.LVL15:
+ 317              	.LFB72:
+ 251:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** 
+ 252:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** /**
+ 253:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   * @brief  Checks whether the specified PWR flag is set or not.
+ 254:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   * @param  PWR_FLAG: specifies the flag to check.
+ 255:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   *   This parameter can be one of the following values:
+ 256:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   *     @arg PWR_FLAG_WU: Wake Up flag
+ 257:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   *     @arg PWR_FLAG_SB: StandBy flag
+ 258:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   *     @arg PWR_FLAG_PVDO: PVD Output
+ 259:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   * @retval The new state of PWR_FLAG (SET or RESET).
+ 260:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   */
+ 261:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** FlagStatus PWR_GetFlagStatus(uint32_t PWR_FLAG)
+ 262:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** {
+ 318              		.loc 1 262 1 is_stmt 1 view -0
+ 319              		.cfi_startproc
+ 320              		@ args = 0, pretend = 0, frame = 0
+ 321              		@ frame_needed = 0, uses_anonymous_args = 0
+ 322              		@ link register save eliminated.
+ARM GAS  C:\Users\ADMIN\AppData\Local\Temp\ccvgfLcG.s 			page 11
+
+
+ 263:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   FlagStatus bitstatus = RESET;
+ 323              		.loc 1 263 3 view .LVU63
+ 264:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   /* Check the parameters */
+ 265:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   assert_param(IS_PWR_GET_FLAG(PWR_FLAG));
+ 324              		.loc 1 265 3 view .LVU64
+ 266:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   
+ 267:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   if ((PWR->CSR & PWR_FLAG) != (uint32_t)RESET)
+ 325              		.loc 1 267 3 view .LVU65
+ 326              		.loc 1 267 11 is_stmt 0 view .LVU66
+ 327 0000 034B     		ldr	r3, .L27
+ 328 0002 5B68     		ldr	r3, [r3, #4]
+ 329              		.loc 1 267 6 view .LVU67
+ 330 0004 0342     		tst	r3, r0
+ 331 0006 01D0     		beq	.L26
+ 268:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   {
+ 269:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****     bitstatus = SET;
+ 332              		.loc 1 269 15 view .LVU68
+ 333 0008 0120     		movs	r0, #1
+ 334              	.LVL16:
+ 335              		.loc 1 269 15 view .LVU69
+ 336 000a 7047     		bx	lr
+ 337              	.LVL17:
+ 338              	.L26:
+ 270:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   }
+ 271:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   else
+ 272:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   {
+ 273:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****     bitstatus = RESET;
+ 339              		.loc 1 273 15 view .LVU70
+ 340 000c 0020     		movs	r0, #0
+ 341              	.LVL18:
+ 274:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   }
+ 275:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   /* Return the flag status */
+ 276:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   return bitstatus;
+ 342              		.loc 1 276 3 is_stmt 1 view .LVU71
+ 277:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** }
+ 343              		.loc 1 277 1 is_stmt 0 view .LVU72
+ 344 000e 7047     		bx	lr
+ 345              	.L28:
+ 346              		.align	2
+ 347              	.L27:
+ 348 0010 00700040 		.word	1073770496
+ 349              		.cfi_endproc
+ 350              	.LFE72:
+ 352              		.section	.text.PWR_ClearFlag,"ax",%progbits
+ 353              		.align	1
+ 354              		.global	PWR_ClearFlag
+ 355              		.syntax unified
+ 356              		.thumb
+ 357              		.thumb_func
+ 359              	PWR_ClearFlag:
+ 360              	.LVL19:
+ 361              	.LFB73:
+ 278:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** 
+ 279:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** /**
+ 280:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   * @brief  Clears the PWR's pending flags.
+ 281:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   * @param  PWR_FLAG: specifies the flag to clear.
+ 282:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   *   This parameter can be one of the following values:
+ARM GAS  C:\Users\ADMIN\AppData\Local\Temp\ccvgfLcG.s 			page 12
+
+
+ 283:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   *     @arg PWR_FLAG_WU: Wake Up flag
+ 284:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   *     @arg PWR_FLAG_SB: StandBy flag
+ 285:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   * @retval None
+ 286:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   */
+ 287:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** void PWR_ClearFlag(uint32_t PWR_FLAG)
+ 288:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** {
+ 362              		.loc 1 288 1 is_stmt 1 view -0
+ 363              		.cfi_startproc
+ 364              		@ args = 0, pretend = 0, frame = 0
+ 365              		@ frame_needed = 0, uses_anonymous_args = 0
+ 366              		@ link register save eliminated.
+ 289:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   /* Check the parameters */
+ 290:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   assert_param(IS_PWR_CLEAR_FLAG(PWR_FLAG));
+ 367              		.loc 1 290 3 view .LVU74
+ 291:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****          
+ 292:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c ****   PWR->CR |=  PWR_FLAG << 2;
+ 368              		.loc 1 292 3 view .LVU75
+ 369              		.loc 1 292 11 is_stmt 0 view .LVU76
+ 370 0000 024A     		ldr	r2, .L30
+ 371 0002 1368     		ldr	r3, [r2]
+ 372 0004 43EA8003 		orr	r3, r3, r0, lsl #2
+ 373 0008 1360     		str	r3, [r2]
+ 293:Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_pwr.c **** }
+ 374              		.loc 1 293 1 view .LVU77
+ 375 000a 7047     		bx	lr
+ 376              	.L31:
+ 377              		.align	2
+ 378              	.L30:
+ 379 000c 00700040 		.word	1073770496
+ 380              		.cfi_endproc
+ 381              	.LFE73:
+ 383              		.text
+ 384              	.Letext0:
+ 385              		.file 2 "c:\\toolschain\\arm_cc\\arm-none-eabi\\include\\machine\\_default_types.h"
+ 386              		.file 3 "c:\\toolschain\\arm_cc\\arm-none-eabi\\include\\sys\\_stdint.h"
+ 387              		.file 4 "Libraries/CMSIS/Include/core_cm3.h"
+ 388              		.file 5 "Libraries/CMSIS/Device/ST/STM32F1xx/Include/stm32f10x.h"
+ 389              		.file 6 "Libraries/STM32F10x_StdPeriph_Driver/inc/stm32f10x_rcc.h"
+ARM GAS  C:\Users\ADMIN\AppData\Local\Temp\ccvgfLcG.s 			page 13
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 stm32f10x_pwr.c
+C:\Users\ADMIN\AppData\Local\Temp\ccvgfLcG.s:18     .text.PWR_DeInit:00000000 $t
+C:\Users\ADMIN\AppData\Local\Temp\ccvgfLcG.s:24     .text.PWR_DeInit:00000000 PWR_DeInit
+C:\Users\ADMIN\AppData\Local\Temp\ccvgfLcG.s:52     .text.PWR_BackupAccessCmd:00000000 $t
+C:\Users\ADMIN\AppData\Local\Temp\ccvgfLcG.s:58     .text.PWR_BackupAccessCmd:00000000 PWR_BackupAccessCmd
+C:\Users\ADMIN\AppData\Local\Temp\ccvgfLcG.s:76     .text.PWR_BackupAccessCmd:00000008 $d
+C:\Users\ADMIN\AppData\Local\Temp\ccvgfLcG.s:81     .text.PWR_PVDCmd:00000000 $t
+C:\Users\ADMIN\AppData\Local\Temp\ccvgfLcG.s:87     .text.PWR_PVDCmd:00000000 PWR_PVDCmd
+C:\Users\ADMIN\AppData\Local\Temp\ccvgfLcG.s:105    .text.PWR_PVDCmd:00000008 $d
+C:\Users\ADMIN\AppData\Local\Temp\ccvgfLcG.s:110    .text.PWR_PVDLevelConfig:00000000 $t
+C:\Users\ADMIN\AppData\Local\Temp\ccvgfLcG.s:116    .text.PWR_PVDLevelConfig:00000000 PWR_PVDLevelConfig
+C:\Users\ADMIN\AppData\Local\Temp\ccvgfLcG.s:147    .text.PWR_PVDLevelConfig:00000010 $d
+C:\Users\ADMIN\AppData\Local\Temp\ccvgfLcG.s:152    .text.PWR_WakeUpPinCmd:00000000 $t
+C:\Users\ADMIN\AppData\Local\Temp\ccvgfLcG.s:158    .text.PWR_WakeUpPinCmd:00000000 PWR_WakeUpPinCmd
+C:\Users\ADMIN\AppData\Local\Temp\ccvgfLcG.s:176    .text.PWR_WakeUpPinCmd:00000008 $d
+C:\Users\ADMIN\AppData\Local\Temp\ccvgfLcG.s:181    .text.PWR_EnterSTOPMode:00000000 $t
+C:\Users\ADMIN\AppData\Local\Temp\ccvgfLcG.s:187    .text.PWR_EnterSTOPMode:00000000 PWR_EnterSTOPMode
+C:\Users\ADMIN\AppData\Local\Temp\ccvgfLcG.s:255    .text.PWR_EnterSTOPMode:0000002c $d
+C:\Users\ADMIN\AppData\Local\Temp\ccvgfLcG.s:261    .text.PWR_EnterSTANDBYMode:00000000 $t
+C:\Users\ADMIN\AppData\Local\Temp\ccvgfLcG.s:267    .text.PWR_EnterSTANDBYMode:00000000 PWR_EnterSTANDBYMode
+C:\Users\ADMIN\AppData\Local\Temp\ccvgfLcG.s:303    .text.PWR_EnterSTANDBYMode:00000020 $d
+C:\Users\ADMIN\AppData\Local\Temp\ccvgfLcG.s:309    .text.PWR_GetFlagStatus:00000000 $t
+C:\Users\ADMIN\AppData\Local\Temp\ccvgfLcG.s:315    .text.PWR_GetFlagStatus:00000000 PWR_GetFlagStatus
+C:\Users\ADMIN\AppData\Local\Temp\ccvgfLcG.s:348    .text.PWR_GetFlagStatus:00000010 $d
+C:\Users\ADMIN\AppData\Local\Temp\ccvgfLcG.s:353    .text.PWR_ClearFlag:00000000 $t
+C:\Users\ADMIN\AppData\Local\Temp\ccvgfLcG.s:359    .text.PWR_ClearFlag:00000000 PWR_ClearFlag
+C:\Users\ADMIN\AppData\Local\Temp\ccvgfLcG.s:379    .text.PWR_ClearFlag:0000000c $d
+
+UNDEFINED SYMBOLS
+RCC_APB1PeriphResetCmd

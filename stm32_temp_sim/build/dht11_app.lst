@@ -1,0 +1,178 @@
+ARM GAS  C:\Users\ADMIN\AppData\Local\Temp\ccn6GNUa.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.arch armv7-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"dht11_app.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.dht11_app_config,"ax",%progbits
+  18              		.align	1
+  19              		.global	dht11_app_config
+  20              		.syntax unified
+  21              		.thumb
+  22              		.thumb_func
+  24              	dht11_app_config:
+  25              	.LFB70:
+  26              		.file 1 "App/dht11_app.c"
+   1:App/dht11_app.c **** #include "dht11_app.h"
+   2:App/dht11_app.c **** #include "dht11_sim.h"
+   3:App/dht11_app.c **** 
+   4:App/dht11_app.c **** /* ================================================================
+   5:App/dht11_app.c ****  *  INTERNAL DEFAULTS — không expose ra ngoài
+   6:App/dht11_app.c ****  * ================================================================ */
+   7:App/dht11_app.c **** #define DHT11_APP_TASK_PRIORITY   2u
+   8:App/dht11_app.c **** #define DHT11_APP_TASK_STACK      128u
+   9:App/dht11_app.c **** 
+  10:App/dht11_app.c **** /* ================================================================
+  11:App/dht11_app.c ****  *  dht11_app_config()
+  12:App/dht11_app.c ****  *  Gọi 1 lần trước vTaskStartScheduler().
+  13:App/dht11_app.c ****  *  Không nhận tham số — mọi giá trị lấy từ #define trong .h
+  14:App/dht11_app.c ****  * ================================================================ */
+  15:App/dht11_app.c **** int dht11_app_config(void)
+  16:App/dht11_app.c **** {
+  27              		.loc 1 16 1 view -0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 16
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31 0000 00B5     		push	{lr}
+  32              	.LCFI0:
+  33              		.cfi_def_cfa_offset 4
+  34              		.cfi_offset 14, -4
+  35 0002 85B0     		sub	sp, sp, #20
+  36              	.LCFI1:
+  37              		.cfi_def_cfa_offset 24
+  17:App/dht11_app.c ****     DHT11_Sim_Cfg_t sim_cfg;
+  38              		.loc 1 17 5 view .LVU1
+  18:App/dht11_app.c ****     sim_cfg.init_data.humidity    = DHT11_APP_HUMIDITY;
+  39              		.loc 1 18 5 view .LVU2
+  40              		.loc 1 18 35 is_stmt 0 view .LVU3
+ARM GAS  C:\Users\ADMIN\AppData\Local\Temp\ccn6GNUa.s 			page 2
+
+
+  41 0004 1E23     		movs	r3, #30
+  42 0006 8DF80430 		strb	r3, [sp, #4]
+  19:App/dht11_app.c ****     sim_cfg.init_data.temperature = DHT11_APP_TEMPERATURE;
+  43              		.loc 1 19 5 is_stmt 1 view .LVU4
+  44              		.loc 1 19 35 is_stmt 0 view .LVU5
+  45 000a 1C23     		movs	r3, #28
+  46 000c 8DF80530 		strb	r3, [sp, #5]
+  20:App/dht11_app.c ****     sim_cfg.task_priority         = DHT11_APP_TASK_PRIORITY;
+  47              		.loc 1 20 5 is_stmt 1 view .LVU6
+  48              		.loc 1 20 35 is_stmt 0 view .LVU7
+  49 0010 0223     		movs	r3, #2
+  50 0012 0293     		str	r3, [sp, #8]
+  21:App/dht11_app.c ****     sim_cfg.task_stack            = DHT11_APP_TASK_STACK;
+  51              		.loc 1 21 5 is_stmt 1 view .LVU8
+  52              		.loc 1 21 35 is_stmt 0 view .LVU9
+  53 0014 8023     		movs	r3, #128
+  54 0016 ADF80C30 		strh	r3, [sp, #12]	@ movhi
+  22:App/dht11_app.c **** 
+  23:App/dht11_app.c ****     if (dht11_sim_config(&sim_cfg) != DHT11_SIM_OK)
+  55              		.loc 1 23 5 is_stmt 1 view .LVU10
+  56              		.loc 1 23 9 is_stmt 0 view .LVU11
+  57 001a 01A8     		add	r0, sp, #4
+  58 001c FFF7FEFF 		bl	dht11_sim_config
+  59              	.LVL0:
+  60              		.loc 1 23 8 view .LVU12
+  61 0020 10B9     		cbnz	r0, .L5
+  62              	.L1:
+  24:App/dht11_app.c ****         return DHT11_APP_EFAIL;
+  25:App/dht11_app.c **** 
+  26:App/dht11_app.c ****     return DHT11_APP_OK;
+  27:App/dht11_app.c **** }
+  63              		.loc 1 27 1 view .LVU13
+  64 0022 05B0     		add	sp, sp, #20
+  65              	.LCFI2:
+  66              		.cfi_remember_state
+  67              		.cfi_def_cfa_offset 4
+  68              		@ sp needed
+  69 0024 5DF804FB 		ldr	pc, [sp], #4
+  70              	.L5:
+  71              	.LCFI3:
+  72              		.cfi_restore_state
+  24:App/dht11_app.c ****         return DHT11_APP_EFAIL;
+  73              		.loc 1 24 16 view .LVU14
+  74 0028 4FF0FF30 		mov	r0, #-1
+  75 002c F9E7     		b	.L1
+  76              		.cfi_endproc
+  77              	.LFE70:
+  79              		.section	.text.dht11_app_run,"ax",%progbits
+  80              		.align	1
+  81              		.global	dht11_app_run
+  82              		.syntax unified
+  83              		.thumb
+  84              		.thumb_func
+  86              	dht11_app_run:
+  87              	.LFB71:
+  28:App/dht11_app.c **** 
+  29:App/dht11_app.c **** /* ================================================================
+ARM GAS  C:\Users\ADMIN\AppData\Local\Temp\ccn6GNUa.s 			page 3
+
+
+  30:App/dht11_app.c ****  *  dht11_app_run()
+  31:App/dht11_app.c ****  *  Enable IC interrupt + start FreeRTOS task.
+  32:App/dht11_app.c ****  *  Gọi sau config(). Từ thời điểm này simulator tự chạy hoàn toàn.
+  33:App/dht11_app.c ****  * ================================================================ */
+  34:App/dht11_app.c **** int dht11_app_run(void)
+  35:App/dht11_app.c **** {
+  88              		.loc 1 35 1 is_stmt 1 view -0
+  89              		.cfi_startproc
+  90              		@ args = 0, pretend = 0, frame = 0
+  91              		@ frame_needed = 0, uses_anonymous_args = 0
+  92 0000 08B5     		push	{r3, lr}
+  93              	.LCFI4:
+  94              		.cfi_def_cfa_offset 8
+  95              		.cfi_offset 3, -8
+  96              		.cfi_offset 14, -4
+  36:App/dht11_app.c ****     if (dht11_sim_run() != DHT11_SIM_OK)
+  97              		.loc 1 36 5 view .LVU16
+  98              		.loc 1 36 9 is_stmt 0 view .LVU17
+  99 0002 FFF7FEFF 		bl	dht11_sim_run
+ 100              	.LVL1:
+ 101              		.loc 1 36 8 view .LVU18
+ 102 0006 00B9     		cbnz	r0, .L10
+ 103              	.L6:
+  37:App/dht11_app.c ****         return DHT11_APP_EFAIL;
+  38:App/dht11_app.c **** 
+  39:App/dht11_app.c ****     return DHT11_APP_OK;
+  40:App/dht11_app.c **** }
+ 104              		.loc 1 40 1 view .LVU19
+ 105 0008 08BD     		pop	{r3, pc}
+ 106              	.L10:
+  37:App/dht11_app.c ****         return DHT11_APP_EFAIL;
+ 107              		.loc 1 37 16 view .LVU20
+ 108 000a 4FF0FF30 		mov	r0, #-1
+ 109 000e FBE7     		b	.L6
+ 110              		.cfi_endproc
+ 111              	.LFE71:
+ 113              		.text
+ 114              	.Letext0:
+ 115              		.file 2 "c:\\toolschain\\arm_cc\\arm-none-eabi\\include\\machine\\_default_types.h"
+ 116              		.file 3 "c:\\toolschain\\arm_cc\\arm-none-eabi\\include\\sys\\_stdint.h"
+ 117              		.file 4 "FreeRTOS/portable/GCC/ARM_CM3/portmacro.h"
+ 118              		.file 5 "Sensor/dht11_sim.h"
+ARM GAS  C:\Users\ADMIN\AppData\Local\Temp\ccn6GNUa.s 			page 4
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 dht11_app.c
+C:\Users\ADMIN\AppData\Local\Temp\ccn6GNUa.s:18     .text.dht11_app_config:00000000 $t
+C:\Users\ADMIN\AppData\Local\Temp\ccn6GNUa.s:24     .text.dht11_app_config:00000000 dht11_app_config
+C:\Users\ADMIN\AppData\Local\Temp\ccn6GNUa.s:80     .text.dht11_app_run:00000000 $t
+C:\Users\ADMIN\AppData\Local\Temp\ccn6GNUa.s:86     .text.dht11_app_run:00000000 dht11_app_run
+
+UNDEFINED SYMBOLS
+dht11_sim_config
+dht11_sim_run
