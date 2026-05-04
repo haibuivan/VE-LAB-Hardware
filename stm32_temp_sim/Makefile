@@ -42,13 +42,16 @@ BUILD_DIR = build
 ######################################
 # C sources
 C_SOURCES =  \
-Src/main.c \
+../simulator_fw/App/main.c \
 Src/freertos_hooks.c \
 Src/syscalls.c \
 Src/stm32f10x_it.c \
-App/dht11_app.c \
-Driver/timer_driver.c \
-Sensor/dht11_sim.c \
+../simulator_fw/Driver/Src/driver_timer.c \
+../simulator_fw/Driver/Src/driver_gpio.c \
+../simulator_fw/Driver/Src/driver_i2c.c \
+../simulator_fw/Driver/Src/driver_uart.c \
+../simulator_fw/Sensor/Src/sensor_dht11.c \
+../simulator_fw/Sensor/Src/sensor_ds1307.c \
 FreeRTOS/source/tasks.c \
 FreeRTOS/source/queue.c \
 FreeRTOS/source/list.c \
@@ -144,9 +147,9 @@ AS_INCLUDES =
 # C includes
 C_INCLUDES =  \
 -IInc \
--IApp \
--IDriver \
--ISensor \
+-I../simulator_fw/App \
+-I../simulator_fw/Driver/Inc \
+-I../simulator_fw/Sensor/Inc \
 -ILibraries/STM32F10x_StdPeriph_Driver/inc \
 -ILibraries/CMSIS/Device/ST/STM32F1xx/Include \
 -ILibraries/CMSIS/Include \

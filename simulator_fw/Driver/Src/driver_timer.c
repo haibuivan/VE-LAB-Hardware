@@ -1,4 +1,4 @@
-#include "timer_driver.h"
+#include "driver_timer.h"
 
 /* ================================================================
  *  INTERNAL STATE

@@ -24,6 +24,11 @@
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f10x_it.h"
 #include "FreeRTOS.h"
+#include "app_config.h"
+
+#if (ENABLE_DHT11 == 1)
+#include "sensor_dht11.h"
+#endif
 
 /** @addtogroup STM32F10x_StdPeriph_Template
  * @{
@@ -158,6 +163,18 @@ void SysTick_Handler(void)
 /*void PPP_IRQHandler(void)
 {
 }*/
+
+#if (ENABLE_DHT11 == 1)
+void TIM1_CC_IRQHandler(void)
+{
+  dht11_tim1_cc_irq();
+}
+
+void TIM2_IRQHandler(void)
+{
+  dht11_tim2_ic_irq();
+}
+#endif
 
 /**
  * @}

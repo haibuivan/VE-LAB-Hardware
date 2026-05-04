@@ -86,4 +86,12 @@ int dht11_sim_config(const DHT11_Sim_Cfg_t *cfg);
 int dht11_sim_run(void);
 int dht11_sim_set_data(const DHT11_Data_t *data);
 
+/* API dong bo cho layer App */
+void sensor_dht11_init(void);
+void sensor_dht11_run(void);
+
+/* ISR process API cho vector table bridge trong stm32f10x_it.c */
+void dht11_tim1_cc_irq(void);
+void dht11_tim2_ic_irq(void);
+
 #endif /* DHT11_SIM_H */

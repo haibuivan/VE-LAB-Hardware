@@ -1,4 +1,4 @@
-#include "gpio_driver.h"
+#include "driver_gpio.h"
 
 /* 
  * gpio_open - cấu hình 1 chân GPIO

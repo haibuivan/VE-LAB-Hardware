@@ -1,4 +1,4 @@
-#include "dht11_sim.h"
+#include "sensor_dht11.h"
 
 /*
  * Timing giao thức DHT11 (đơn vị: microsecond):
@@ -22,6 +22,11 @@
 /* Giới hạn độ rộng xung start hợp lệ từ host (µs) */
 #define DHT_START_MIN 18000u
 #define DHT_START_MAX 30000u
+
+#define SENSOR_DHT11_DEFAULT_HUMIDITY   65u
+#define SENSOR_DHT11_DEFAULT_TEMPERATURE 28u
+#define SENSOR_DHT11_TASK_PRIORITY      (tskIDLE_PRIORITY + 2u)
+#define SENSOR_DHT11_TASK_STACK_WORDS   128u
 
 /**
  * enum dht11_tx_state - Các trạng thái của TX state machine
@@ -81,6 +86,9 @@ static struct dht11_ctx
     volatile uint8_t ic_awaiting_rise;
     volatile uint16_t ic_fall_capture;
 } g_dht11;
+
+static uint8_t g_sensor_dht11_initialized;
+static uint8_t g_sensor_dht11_running;
 
 /* ------------------------------------------------------------------ */
 
@@ -516,4 +524,42 @@ int dht11_sim_set_data(const DHT11_Data_t *data)
 
     xQueueOverwrite(g_dht11.data_queue, data);
     return DHT11_SIM_OK;
+}
+
+void sensor_dht11_init(void)
+{
+    DHT11_Sim_Cfg_t cfg;
+
+    if (g_sensor_dht11_initialized != 0u)
+    {
+        return;
+    }
+
+    cfg.init_data.humidity = SENSOR_DHT11_DEFAULT_HUMIDITY;
+    cfg.init_data.temperature = SENSOR_DHT11_DEFAULT_TEMPERATURE;
+    cfg.task_priority = SENSOR_DHT11_TASK_PRIORITY;
+    cfg.task_stack = SENSOR_DHT11_TASK_STACK_WORDS;
+
+    if (dht11_sim_config(&cfg) == DHT11_SIM_OK)
+    {
+        g_sensor_dht11_initialized = 1u;
+    }
+}
+
+void sensor_dht11_run(void)
+{
+    if (g_sensor_dht11_initialized == 0u)
+    {
+        sensor_dht11_init();
+    }
+
+    if ((g_sensor_dht11_initialized == 0u) || (g_sensor_dht11_running != 0u))
+    {
+        return;
+    }
+
+    if (dht11_sim_run() == DHT11_SIM_OK)
+    {
+        g_sensor_dht11_running = 1u;
+    }
 }
